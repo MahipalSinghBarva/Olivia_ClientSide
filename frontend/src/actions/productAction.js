@@ -31,7 +31,7 @@ import {
 } from "../constants/productConstants";
 
 export const getProduct =
-  (keyword, currentPage = 1, price = [0, 25000], category, rating = 0) =>
+  (keyword="", currentPage = 1, price = [0, 25000], category, rating = 0) =>
   async (dispatch) => {
     try {
       dispatch({ type: ALL_PRODUCT_REQUEST });

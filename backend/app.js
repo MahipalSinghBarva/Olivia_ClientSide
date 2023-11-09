@@ -4,7 +4,7 @@ const bodyParser = require("body-parser")
 const fileUpload = require("express-fileupload")
 const errorMiddleWare = require('./middleware/error')
 const cookieParser = require("cookie-parser")
-// const dotenv = require('dotenv')
+const dotenv = require('dotenv')
 const path = require('path')
 
 app.use(express.json({ limit: '1000mb' }))
@@ -14,8 +14,14 @@ app.use(fileUpload())
 app.use(bodyParser.json({ limit: '1000mb' }));
 
 if(process.env.NODE_ENV !== "PRODUCTION"){
-    require("dotenv").config({path:'backend/config/config.env'})
+    require("dotenv").config({path:'.env'})
 }
+
+// const hostname = "192.168.31.131:8080"
+
+// dotenv.config({path:'.env'})
+
+app.use(express.static("build"))
 
 // route import
 const product = require("./route/productRoute")

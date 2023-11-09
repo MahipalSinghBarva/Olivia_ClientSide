@@ -39,7 +39,7 @@ import ProcessOrder from "./component/admin/ProcessOrder.js";
 import UserList from "./component/admin/UserList";
 import UpdateUser from "./component/admin/UpdateUser.js";
 import Reviews from "./component/admin/Reviews.js";
-import NotFound from "./component/layout/notFound/NotFound";
+// import NotFound from "./component/layout/notFound/NotFound";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
