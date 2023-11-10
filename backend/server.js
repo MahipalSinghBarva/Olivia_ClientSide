@@ -1,9 +1,11 @@
 const app = require("./app");
-// const dotenv = require("dotenv");
+const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const cloudinary = require("cloudinary");
 const path = require("path");
-// const http = require('http');
+
+
+
 // handling uncaught execption
 process.on("uncaughtException", (err) => {
   console.log(`Error: ${err.message}`);
@@ -11,17 +13,14 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
+// const hostname = "0.0.0.0"
 
 if(process.env.NODE_ENV !== "PRODUCTION"){
-    require("dotenv").config({path:'.env'})
+    require("dotenv").config({path:'./.env'})
 }
 
 // dotenv.config({ path: ".env" });
-// if (result.error) {
-//     console.error('Error loading config.env:', result.error);
-//   } else {
-//     console.log('Environment variables loaded successfully:', process.env);
-//   }
+
 
 connectDB();
 
@@ -31,19 +30,14 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// const server = http.createServer((req, res) => {
-//     res.statusCode = 200
-//     res.setHeader('Content-Type', 'text/plain')
-//     // res.end('Hello world')
+
+// app.listen(process.env.PORT,hostname, () => {
+//   console.log(`Server is working on PORT:${hostname}:${process.env.PORT}`);
 // });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is working on PORT:${process.env.PORT}`);
-});
-
-// app.listen(8080,()=>{
-//     console.log(`Server is working on http://localhost:8080`);
-// })
+app.listen(process.env.PORT,process.env.HOST_NAME,()=>{
+    console.log(`Server is working on PORT: ${process.env.HOST_NAME}:${process.env.PORT}`);
+})
 
 // unhandle promise rejection
 process.on("unhandledRejection", (err) => {

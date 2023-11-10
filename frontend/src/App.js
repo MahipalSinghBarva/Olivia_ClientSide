@@ -39,7 +39,7 @@ import ProcessOrder from "./component/admin/ProcessOrder.js";
 import UserList from "./component/admin/UserList";
 import UpdateUser from "./component/admin/UpdateUser.js";
 import Reviews from "./component/admin/Reviews.js";
-// import NotFound from "./component/layout/notFound/NotFound";
+import NotFound from "./component/layout/notFound/NotFound";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -70,7 +70,13 @@ function App() {
           <ProcatedRoute exact path="/payment/process" component={Payment} />
         </Elements>
       )}
-      
+      <ProcatedRoute
+          isAdmin={true}
+          exact
+          path="/admin/dashboard"
+          component={Dashbord}
+        />
+      <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/product/:id" component={ProductDetails} />
         <Route exact path="/products" component={Products} />
@@ -96,12 +102,7 @@ function App() {
           <ProcatedRoute exact path="/order/confirm" component={ConfirmOrder} />
           <ProcatedRoute exact path="/order/:id" component={OrderDetails} />
         </Switch>
-        <ProcatedRoute
-          isAdmin={true}
-          exact
-          path="/admin/dashboard"
-          component={Dashbord}
-        />
+        
         <ProcatedRoute
           isAdmin={true}
           exact
@@ -150,11 +151,11 @@ function App() {
           path="/admin/reviews"
           component={Reviews}
         />
-        {/* <Route
+        <Route
           component={
-            window.location.pathname === "/process/payment" ? null : NotFound}
-        /> */}
-     
+            window.location.pathname === "/payment/process" ? null : NotFound}
+        />
+     </Switch>
       <Footer />
     </Router>
   );

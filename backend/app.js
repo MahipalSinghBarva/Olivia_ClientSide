@@ -14,14 +14,14 @@ app.use(fileUpload())
 app.use(bodyParser.json({ limit: '1000mb' }));
 
 if(process.env.NODE_ENV !== "PRODUCTION"){
-    require("dotenv").config({path:'.env'})
+    require("dotenv").config({path:'./.env'})
 }
 
-// const hostname = "192.168.31.131:8080"
+const hostname = "192.168.31.131"
 
 // dotenv.config({path:'.env'})
 
-app.use(express.static("build"))
+// app.use(express.static("../frontend/build"))
 
 // route import
 const product = require("./route/productRoute")
@@ -35,10 +35,10 @@ app.use("/api/v1", user)
 app.use("/api/v1", order)
 app.use("/api/v1", payment)
 
-app.use(express.static(path.join(__dirname, "../frontend/build")))
+app.use(express.static(path.join(__dirname, "./build")))
 
 app.get("*", (req, res)=>{
-    res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"))
+    res.sendFile(path.resolve(__dirname, "./build"))
 })
 
 // middleware for error
